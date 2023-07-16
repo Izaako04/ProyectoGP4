@@ -37,7 +37,7 @@ public class Camioneta extends Vehiculo {
 
     @Override
     public String toString() {
-        return super.toString() + "traccion=" + traccion;
+        return super.toString() + "\n traccion=" + traccion;
     }
     
     

@@ -171,7 +171,7 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "id= " + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", tipo_motor=" + tipo_motor + ", año=" + año + ", recorrido=" + recorrido + ", color=" + color + ", tipo_comb=" + tipo_comb + ", precio=" + precio + ", registros=" + registros;
+        return "id= " + id + "\n placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio + "\n registros=" + registros;
     }
     
     public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev){
