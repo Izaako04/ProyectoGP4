@@ -41,4 +41,11 @@ public class Auto extends Vehiculo{
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+ "vidrios=" + vidrios + ", transmision=" + transmision;
+    }
+    
+    
 }

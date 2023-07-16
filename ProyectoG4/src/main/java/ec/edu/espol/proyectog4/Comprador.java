@@ -268,8 +268,5 @@ public class Comprador {
         for(int i=0;i<listaSel.size();i++){
             
         }
-        
-            
-            
     }
 }

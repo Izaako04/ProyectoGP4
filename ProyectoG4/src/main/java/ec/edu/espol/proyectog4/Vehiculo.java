@@ -168,6 +168,11 @@ public class Vehiculo {
         }
         return false;        
     }
+
+    @Override
+    public String toString() {
+        return "id= " + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", tipo_motor=" + tipo_motor + ", año=" + año + ", recorrido=" + recorrido + ", color=" + color + ", tipo_comb=" + tipo_comb + ", precio=" + precio + ", registros=" + registros;
+    }
     
     public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev){
         ArrayList<String> placas = readFilePlacas(nfilev);
