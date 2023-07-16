@@ -10,14 +10,13 @@ import java.util.Scanner;
 
 public class Oferta {
     private int precio_oferta;
+    private String correo;
     private Vehiculo vehiculo;
-    private Vendedor vendedor;
-    private Comprador comprador;
     
     
    @Override
    public String toString(){
-       return vehiculo.getMarca()+" "+vehiculo.getModelo()+" Precio:"+vehiculo.getPrecio()+"\n"+this.vendedor.getCorreo_electronico()+"\n"+this.precio_oferta;
+       return vehiculo.getMarca()+vehiculo.getModelo()+this.precio_oferta;
    }
    
 }
