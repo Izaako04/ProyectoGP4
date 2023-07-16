@@ -4,6 +4,8 @@
  */
 package ec.edu.espol.proyectog4;
 
+import static ec.edu.espol.proyectog4.Vendedor.readFileClaves;
+import static ec.edu.espol.proyectog4.Vendedor.readFileCorreos;
 import static ec.edu.espol.util.Util.getSHA;
 import static ec.edu.espol.util.Util.nextID;
 import static ec.edu.espol.util.Util.toHexString;
@@ -94,7 +96,54 @@ public class Comprador {
         }
         return correos;
     }
-       
+    
+    public static ArrayList<String> readFileClaves(String nfile){
+        ArrayList<String> claves = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nfile))){
+            while(sc.hasNextLine()){
+                String line = sc.nextLine();
+                String[] tokens = line.split("\\|");
+                String correo_elec = tokens[4];
+                claves.add(correo_elec);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return claves;
+    }
+    
+    public static String[] validarCredenciales(Scanner sc, String nfileComp){
+        String[] resultado= new String[2];
+        System.out.println("Ingrese su correo electronico de comprador");
+        String correo = sc.nextLine();
+        ArrayList<String> correos_dados = readFileCorreos(nfileComp);
+        for (String c : correos_dados) {
+            if (c.equals(correo)) {
+                resultado[0]=correo;
+            } else {
+                System.out.println("Correo no encontrado");
+            }
+        }
+        System.out.println("Ingrese su clave de comprador");
+        String cv = sc.nextLine();
+        ArrayList<String> claves = readFileClaves(nfileComp);
+        try{
+            String password = toHexString(getSHA(cv));
+            for (String c : claves) {
+                if (c.equals(password)) {
+                    resultado[1]=cv;
+                } else {
+                    System.out.println("Clave incorrecta");
+                }
+            }
+        }catch (NoSuchAlgorithmException e){
+                System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
+            }
+        if ((correoin && clavein)==true)
+            return resultado;
+        
+    }
+    
     public static void nextComprador(Scanner sc,String nfile){
         int id_comprador = nextID(nfile);
         System.out.println("Ingrese nombres");
@@ -175,7 +224,9 @@ public class Comprador {
     }
     
     
+    
     public void ofertarVehiculo(Scanner sc, String nfile){
+        
         System.out.println("¿Desea ingresar tipo de vehiculo? si/no :");
         String resp1=sc.nextLine();
         int tipo=0;
@@ -267,9 +318,12 @@ public class Comprador {
         
         for(int i=0;i<listaSel.size();i++){
             Vehiculo v=listaSel.get(i);
-            if(v instanceof)
-            
-            
+            v.toString();
+            System.out.println("¿Desea hacer una oferta? si/no ");
+            String resp=sc.nextLine();
+            boolean credenciales=validarCredenciales(sc,nfile);
+            if(resp.toLowerCase().equals("si"))
+                
         }
     }
 }
