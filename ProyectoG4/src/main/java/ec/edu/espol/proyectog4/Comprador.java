@@ -147,7 +147,7 @@ public class Comprador {
         }
     }
     
-    public ArrayList<Vehiculo> identificarTipo(String nfile, String tipo,String fileVendedores){
+    public static ArrayList<Vehiculo> identificarTipo(String nfile, String tipo,String fileVendedores){
         ArrayList<Vehiculo> listaMotos = new ArrayList <>();
         ArrayList<Vehiculo> listaCamionetas = new ArrayList <>();
         ArrayList<Vehiculo> listaAutos = new ArrayList <>();
@@ -186,7 +186,7 @@ public class Comprador {
             return listaTotal;
     }
     
-    public ArrayList<Vehiculo> identificarRango(String nfile, String fileVendedores,String tipo,int recMin,int recMax,int anioMin,int anioMax,int preMin,int preMax){
+    public static ArrayList<Vehiculo> identificarRango(String nfile, String fileVendedores,String tipo,int recMin,int recMax,int anioMin,int anioMax,int preMin,int preMax){
         ArrayList<Vehiculo> vehiculos=identificarTipo(nfile, tipo,fileVendedores);
         ArrayList<Vehiculo> listaF= new ArrayList<>();
         for(Vehiculo v: vehiculos){
@@ -198,7 +198,7 @@ public class Comprador {
     
     
     
-    public void ofertarVehiculo(Scanner sc, String nfile, String fileVendedores){
+    public static void ofertarVehiculo(Scanner sc, String nfile, String fileVendedores){
         
         System.out.println("¿Desea ingresar tipo de vehiculo? si/no :");
         String resp1=sc.nextLine();

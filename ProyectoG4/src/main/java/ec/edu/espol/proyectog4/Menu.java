@@ -46,14 +46,12 @@ public class Menu {
         Scanner sc= new Scanner(System.in);
         int opcion= sc.nextInt();
         
-//        if (opcion==1){
-//            Vendedor.nextComprador(sc,"Compradores.txt");
-//        }
-//        if (opcion==2){
-//            Vendedor.registrarVehiculo(sc, "Vendedor.txt");
-//        }
-//        if (opcion==3)
-//            System.out.println("falta aceptarOferta");
-//            //Vendedor.aceptarOferta(); 
+        if (opcion==1){
+            Comprador.nextComprador(sc,"Compradores.txt");
+        }
+        if (opcion==2){
+            Comprador.ofertarVehiculo(sc,"Vehiculos.txt", "Vendedores.txt");
+        }
+        
     }
 }
