@@ -290,7 +290,7 @@ public class Vendedor {
         }
     }
     
-    public static void aceptarOferta(Scanner sc, String nfilevendedores, ArrayList<Oferta> ofertasVehiculos){
+    public static void aceptarOferta(Scanner sc, String nfilevendedores, String nfileofertas){
         System.out.println("Ingrese su correo electronico de vendedor");
         String correo = sc.nextLine();
         System.out.println("Ingrese su clave de vendedor");
@@ -300,7 +300,13 @@ public class Vendedor {
             System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
             credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
-        int i=0;
+        int i = 0;
+//Prueba de funcionamiento con arraylist de ofertas
+        ArrayList<Vehiculo> v1 = Vehiculo.readFileVehiculos("Vehiculos.txt");
+        Oferta of1 = new Oferta(6000,"davidguevara@gmail.com",v1.get(0));
+        ArrayList<Oferta> ofertasVehiculos = new ArrayList<>();
+        ofertasVehiculos.add(of1);
+//Prueba de funcionamiento con arraylist de Ofetas
         if (credenciales==true){
             System.out.println(ofertasVehiculos.get(i));
             System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta");
@@ -320,8 +326,8 @@ public class Vendedor {
                     opcion = sc.nextInt();
                     }
                 }
-            }while(opcion != 1); 
+            }while(opcion != 1);
+            System.out.println("Enviando correo");
         }
     }
-
 }
