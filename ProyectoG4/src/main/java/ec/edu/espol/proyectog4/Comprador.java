@@ -314,6 +314,7 @@ public class Comprador {
                 System.out.println("Ingrese su correo: ");
                 String correoIn=sc.nextLine();
                 off=new Oferta(ofertaIn,correoIn,v);
+                Oferta.ofertasVehiculos.add(off);
                 i++;
             }
             else if(resp==3){

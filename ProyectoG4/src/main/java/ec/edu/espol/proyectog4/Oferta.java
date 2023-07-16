@@ -4,10 +4,13 @@
  */
 package ec.edu.espol.proyectog4;
 
+import java.util.ArrayList;
+
 public class Oferta {
     private double precio_oferta;
     private String correo;
     private Vehiculo vehiculo;
+    public static ArrayList<Oferta> ofertasVehiculos=new ArrayList<>();
 
     public Oferta(double precio_oferta, String correo, Vehiculo vehiculo) {
         this.precio_oferta = precio_oferta;
