@@ -139,8 +139,8 @@ public class Vendedor {
         return claves;
     }
             
-    public static void nextVendedor(Scanner sc,String nfile){
-        int id_vendedor = nextID(nfile);
+    public static void nextVendedor(Scanner sc,String nfileVendores){
+        int id_vendedor = nextID(nfileVendores);
         System.out.println("Ingrese nombres");
         String n = sc.next();
         System.out.println("Ingrese apellidos");
@@ -155,14 +155,14 @@ public class Vendedor {
             System.out.println("Ingrese correo");
             String correo = sc.next();
             String correof;
-            ArrayList<String> correos_dados = readFileCorreos(nfile);
+            ArrayList<String> correos_dados = readFileCorreos(nfileVendores);
             for (String c : correos_dados) {
                 if (c.equals(correo)) {
                     System.out.println("Correo ya registrado");
                 } else {
                     correof = correo;
                     Vendedor v = new Vendedor(id_vendedor,n,ape,org,password,correof);
-                    v.saveArchivo(nfile);
+                    v.saveArchivo(nfileVendores);
                 }
             }
         }catch (NoSuchAlgorithmException e) {
@@ -246,16 +246,18 @@ public class Vendedor {
             int opcion = sc.nextInt();
             do{
                 switch(opcion){
-                case (1):
+                case (1) -> {
                     i += 1;
                     System.out.println(ofertasVehiculos.get(i));
                     System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
                     opcion = sc.nextInt();
-                case (2):
+                    }
+                case (2) -> {
                     i-= 1;
                     System.out.println(ofertasVehiculos.get(i));
                     System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
                     opcion = sc.nextInt();
+                    }
                 }
             }while(opcion != 1);
             
