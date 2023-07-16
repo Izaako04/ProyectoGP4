@@ -93,7 +93,7 @@ public class Vendedor {
     
     public void saveArchivo(String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.nombres+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correo_electronico+"|"+this.clave);
+            pw.println(this.id+"|"+this.nombres+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correo_electronico+"|"+this.clave);
             
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -103,7 +103,7 @@ public class Vendedor {
     public static void saveArchivo(ArrayList<Vendedor> vendedores, String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
             for(Vendedor x: vendedores)
-                pw.println(x.nombres+"|"+x.apellidos+"|"+x.organizacion+"|"+x.correo_electronico+"|"+x.clave);
+                pw.println(x.id+"|"+x.nombres+"|"+x.apellidos+"|"+x.organizacion+"|"+x.correo_electronico+"|"+x.clave);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -115,7 +115,7 @@ public class Vendedor {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[4];
+                String correo_elec = tokens[5];
                 correos.add(correo_elec);
             }
         } catch (Exception e) {
@@ -124,6 +124,21 @@ public class Vendedor {
         return correos;
     }
 
+    public static ArrayList<Vendedor> readFileVendedores(String nfile) {
+        ArrayList<Vendedor> vendedores = new ArrayList<>();
+        try (Scanner sc = new Scanner(new File(nfile))) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] tokens = line.split("\\|");
+                int ids = Integer.parseInt(tokens[0]);
+                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
+                vendedores.add(vend);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return vendedores;
+    }
     
     public static ArrayList<String> readFileClaves(String nfile){
         ArrayList<String> claves = new ArrayList<>();
@@ -131,7 +146,7 @@ public class Vendedor {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[3];
+                String correo_elec = tokens[4];
                 claves.add(correo_elec);
             }
         }catch(Exception e){
@@ -176,9 +191,9 @@ public class Vendedor {
         }
     }
     
-    public static Vendedor searchByID(ArrayList<Vendedor> vendedores, int id){
+    public static Vendedor searchByCorreo(ArrayList<Vendedor> vendedores, String correo){
         for(Vendedor x: vendedores){
-            if(x.id == id)
+            if(x.correo_electronico.equals(correo))
                 return x;
         }
         return null;

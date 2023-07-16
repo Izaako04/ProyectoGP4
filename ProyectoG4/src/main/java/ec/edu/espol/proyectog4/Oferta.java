@@ -4,14 +4,40 @@
  */
 package ec.edu.espol.proyectog4;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-
 public class Oferta {
     private int precio_oferta;
     private String correo;
     private Vehiculo vehiculo;
+
+    public Oferta(int precio_oferta, String correo, Vehiculo vehiculo) {
+        this.precio_oferta = precio_oferta;
+        this.correo = correo;
+        this.vehiculo = vehiculo;
+    }
+
+    public int getPrecio_oferta() {
+        return precio_oferta;
+    }
+
+    public void setPrecio_oferta(int precio_oferta) {
+        this.precio_oferta = precio_oferta;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
     
     
    @Override
