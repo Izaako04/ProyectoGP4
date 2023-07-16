@@ -30,9 +30,16 @@ public class ProyectoG4 {
             }
             else if(opcion==2){
                 Menu.Comprador();
-            }                
-            System.out.println("Terminado con éxito");
             }
-        }
-        
+            else if(opcion==3){
+                System.out.println("Terminado con éxito");
+                }
+            System.out.println("""
+                           Menú de Opciones:
+                           1. Vendedor
+                           2. Comprador
+                           3. Salir""");
+            opcion= Integer.parseInt(sc.nextLine());         
+        }       
+    }   
 }    

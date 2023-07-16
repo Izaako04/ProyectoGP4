@@ -19,17 +19,22 @@ public class Menu {
                            3. Aceptar oferta
                            4. Regresar""");
         Scanner sc= new Scanner(System.in);
-        int opcion= Integer.parseInt(sc.nextLine());
+        int miniopcion= Integer.parseInt(sc.nextLine());
         
-        if (opcion==1){
-            Vendedor.nextVendedor(sc,"Vendedores.txt");
+        while(miniopcion != 4) {
+            if(miniopcion == 1)
+                Vendedor.nextVendedor(sc,"Vendedores.txt");
+            else if(miniopcion == 2)
+                Vendedor.registrarVehiculo(sc, "Vendedores.txt","Vehiculos.txt");
+            else if(miniopcion == 3)
+                System.out.println("falta aceptarOferta");
+            System.out.println("""
+                           1. Registrar un nuevo vendedor
+                           2. Registrar un nuevo veh\u00edculo
+                           3. Aceptar oferta
+                           4. Regresar""");
+            miniopcion= Integer.parseInt(sc.nextLine());
         }
-        if (opcion==2){
-            Vendedor.registrarVehiculo(sc, "Vendedores.txt","Vehiculos.txt");
-        }
-        if (opcion==3)
-            System.out.println("falta aceptarOferta");
-            //Vendedor.aceptarOferta(); 
     }
            
     
