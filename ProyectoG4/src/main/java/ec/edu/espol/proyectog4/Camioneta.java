@@ -29,7 +29,7 @@ public class Camioneta extends Vehiculo {
     @Override
     public void saveArchivo(String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(super.getId()+"|"+super.getPlaca()+"|"+super.getMarca()+"|"+super.getModelo()+"|"+super.getTipo_motor()+"|"+super.getAño()+"|"+super.getRecorrido()+"|"+this.getColor()+"|"+super.getTipo_comb()+"|"+super.getPrecio()+"|"+this.traccion);            
+            pw.println(super.getId()+"|"+super.getVendedor().getId()+"|"+super.getPlaca()+"|"+super.getMarca()+"|"+super.getModelo()+"|"+super.getTipo_motor()+"|"+super.getAño()+"|"+super.getRecorrido()+"|"+this.getColor()+"|"+super.getTipo_comb()+"|"+super.getPrecio()+"|"+this.traccion);            
         } catch(Exception e){
             System.out.println(e.getMessage());
         }

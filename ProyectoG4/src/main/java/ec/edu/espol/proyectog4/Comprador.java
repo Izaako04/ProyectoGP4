@@ -147,7 +147,7 @@ public class Comprador {
         }
     }
     
-    public ArrayList<Vehiculo> identificarTipo(String nfile, String tipo){
+    public ArrayList<Vehiculo> identificarTipo(String nfile, String tipo,String fileVendedores){
         ArrayList<Vehiculo> listaMotos = new ArrayList <>();
         ArrayList<Vehiculo> listaCamionetas = new ArrayList <>();
         ArrayList<Vehiculo> listaAutos = new ArrayList <>();
@@ -156,18 +156,19 @@ public class Comprador {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                if(tokens.length==10){
-                    Vehiculo moto= new Vehiculo(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[6]),tokens[7],tokens[8],Integer.parseInt(tokens[9]));
+                Vendedor v=Vendedor.searchByID(fileVendedores,Integer.parseInt(tokens[1]));
+                if(tokens.length==11){
+                    Vehiculo moto= new Vehiculo(Integer.parseInt(tokens[0]),tokens[2],tokens[3],tokens[4],tokens[5],Integer.parseInt(tokens[6]),Integer.parseInt(tokens[7]),tokens[8],tokens[9],Integer.parseInt(tokens[10]),v);
                     listaMotos.add(moto);
                     listaTotal.add(moto);
                 }
-                if(tokens.length==11){
-                    Vehiculo camioneta= new Camioneta(tokens[10],Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[6]),tokens[7],tokens[8],Integer.parseInt(tokens[9]));
+                if(tokens.length==12){
+                    Vehiculo camioneta= new Camioneta(tokens[11],Integer.parseInt(tokens[0]),tokens[2],tokens[3],tokens[4],tokens[5],Integer.parseInt(tokens[6]),Integer.parseInt(tokens[7]),tokens[8],tokens[9],Integer.parseInt(tokens[10]),v);
                     listaCamionetas.add(camioneta); 
                     listaTotal.add(camioneta);
                 }
-                if(tokens.length==12){
-                    Vehiculo auto= new Auto(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],Integer.parseInt(tokens[5]),Integer.parseInt(tokens[6]),tokens[7],tokens[8],Integer.parseInt(tokens[9]),tokens[10],tokens[11]);
+                if(tokens.length==13){
+                    Vehiculo auto= new Auto(Integer.parseInt(tokens[0]),tokens[2],tokens[3],tokens[4],tokens[5],Integer.parseInt(tokens[6]),Integer.parseInt(tokens[7]),tokens[8],tokens[9],Integer.parseInt(tokens[10]),v,tokens[11],tokens[12]);
                     listaAutos.add(auto); 
                     listaTotal.add(auto);
                 }
@@ -185,8 +186,8 @@ public class Comprador {
             return listaTotal;
     }
     
-    public ArrayList<Vehiculo> identificarRango(String nfile,String tipo,int recMin,int recMax,int anioMin,int anioMax,int preMin,int preMax){
-        ArrayList<Vehiculo> vehiculos=identificarTipo(nfile, tipo);
+    public ArrayList<Vehiculo> identificarRango(String nfile, String fileVendedores,String tipo,int recMin,int recMax,int anioMin,int anioMax,int preMin,int preMax){
+        ArrayList<Vehiculo> vehiculos=identificarTipo(nfile, tipo,fileVendedores);
         ArrayList<Vehiculo> listaF= new ArrayList<>();
         for(Vehiculo v: vehiculos){
             if(v.getRecorrido()>=recMin && v.getRecorrido()<=recMax && v.getAño()>=anioMin && v.getAño()<=anioMax && v.getPrecio()>=preMin && v.getPrecio()<=preMax);
@@ -197,7 +198,7 @@ public class Comprador {
     
     
     
-    public void ofertarVehiculo(Scanner sc, String nfile){
+    public void ofertarVehiculo(Scanner sc, String nfile, String fileVendedores){
         
         System.out.println("¿Desea ingresar tipo de vehiculo? si/no :");
         String resp1=sc.nextLine();
@@ -286,7 +287,7 @@ public class Comprador {
             precioMax+=Integer.MAX_VALUE;
         }
         
-        ArrayList<Vehiculo> listaSel= identificarRango(nfile,tipoS,recorridoMin,recorridoMax,anioMin,anioMax,precioMin,precioMax);
+        ArrayList<Vehiculo> listaSel= identificarRango(nfile,tipoS,fileVendedores,recorridoMin,recorridoMax,anioMin,anioMax,precioMin,precioMax);
         int i=0;
         int x= 0;
         while(x==0){
