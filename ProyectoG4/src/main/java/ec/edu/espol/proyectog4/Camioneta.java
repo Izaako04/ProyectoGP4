@@ -15,15 +15,15 @@ import java.util.Scanner;
 public class Camioneta extends Vehiculo {
     private String traccion;
 
-    public Camioneta(String traccion, int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio) {
-        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio);
+    public Camioneta(String traccion, int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor) {
+        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio,vendedor);
         this.traccion = traccion;
     }
-    public static Camioneta ingresarCamioneta(Scanner sc, String nfilev) {
-        Vehiculo vehiculo=ingresarVehiculo(sc, nfilev);
+    public static Camioneta ingresarCamioneta(Scanner sc, String nfilev,Vendedor vendedor) {
+        Vehiculo vehiculo=ingresarVehiculo(sc, nfilev,vendedor);
         System.out.println("Ingrese la tracción:");
         String traccion = sc.nextLine();
-        Camioneta camioneta = new Camioneta(traccion, vehiculo.getId(), vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio());
+        Camioneta camioneta = new Camioneta(traccion, vehiculo.getId(), vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(),vehiculo.getVendedor());
         return camioneta;
     }
     @Override

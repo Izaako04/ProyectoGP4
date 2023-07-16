@@ -190,6 +190,14 @@ public class Vendedor {
             System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
         }
     }
+
+    public static Vendedor searchByID(ArrayList<Vendedor> vendedores, int id){
+        for(Vendedor x: vendedores){
+            if(x.id==id)
+                return x;
+        }
+        return null;
+    }
     
     public static Vendedor searchByCorreo(ArrayList<Vendedor> vendedores, String correo){
         for(Vendedor x: vendedores){
@@ -199,16 +207,12 @@ public class Vendedor {
         return null;
     }
     
-    public static boolean validarCredenciales(Scanner sc, String nfilevendedores){
-        System.out.println("Ingrese su correo electronico de vendedor");
-        String correo = sc.nextLine();
+    public static boolean validarCredenciales(String correo, String cv, String nfilevendedores){
         Boolean correoin = false;
         ArrayList<String> correos_dados = readFileCorreos(nfilevendedores);
         for (String c : correos_dados) {
             correoin = c.equals(correo);
         }
-        System.out.println("Ingrese su clave de vendedor");
-        String cv = sc.nextLine();
         Boolean clavein = false;
         ArrayList<String> claves = readFileClaves(nfilevendedores);
         try{
@@ -223,25 +227,31 @@ public class Vendedor {
     }
     
     public static void registrarVehiculo(Scanner sc, String nfilevendedores, String nfilevehiculos){
-        boolean credenciales = validarCredenciales(sc, nfilevendedores);
+        System.out.println("Ingrese su correo electronico de vendedor");
+        String correo = sc.nextLine();
+        System.out.println("Ingrese su clave de vendedor");
+        String cv = sc.nextLine();
+        boolean credenciales = validarCredenciales(correo, cv, nfilevendedores);
         while(credenciales != true){
             System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
-            credenciales = validarCredenciales(sc, nfilevendedores);
+            credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
+        ArrayList<Vendedor> vendedores = readFileVendedores("Vendedores.txt");
+        Vendedor vendedor = searchByCorreo(vendedores,correo);
         if (credenciales==true){
             System.out.println("Ingrese tipo de vehiculo a registrar: \n 1.Moto \n 2.Auto \n 3.Camioneta");
             int opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
                 case (1):
-                    Vehiculo moto = Vehiculo.ingresarVehiculo(sc, nfilevehiculos);
+                    Vehiculo moto = Vehiculo.ingresarVehiculo(sc, nfilevehiculos,vendedor);
                     moto.saveArchivo("vehiculos.txt");
                     break;
                 case (2):
-                    Auto auto = Auto.ingresarAuto(sc, nfilevehiculos);
+                    Auto auto = Auto.ingresarAuto(sc, nfilevehiculos,vendedor);
                     auto.saveArchivo("vehiculos.txt");
                     break;
                 case (3):
-                    Camioneta camioneta = Camioneta.ingresarCamioneta(sc,nfilevehiculos);
+                    Camioneta camioneta = Camioneta.ingresarCamioneta(sc,nfilevehiculos,vendedor);
                     camioneta.saveArchivo("vehiculos.txt");
                     break;
             }
@@ -249,10 +259,14 @@ public class Vendedor {
     }
     
     public static void aceptarOferta(Scanner sc, String nfilevendedores, String nfilecompradores, ArrayList<Oferta> ofertasVehiculos){
-        boolean credenciales = validarCredenciales(sc, nfilevendedores);
+        System.out.println("Ingrese su correo electronico de vendedor");
+        String correo = sc.nextLine();
+        System.out.println("Ingrese su clave de vendedor");
+        String cv = sc.nextLine();
+        boolean credenciales = validarCredenciales(correo, cv, nfilevendedores);
         while(credenciales != true){
             System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
-            credenciales = validarCredenciales(sc, nfilevendedores);
+            credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
         int i=0;
         if (credenciales==true){
