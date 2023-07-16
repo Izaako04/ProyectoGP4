@@ -108,6 +108,11 @@ public class Vendedor {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public String toString() {
+        return "Vendedor{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", organizacion=" + organizacion + ", correo_electronico=" + correo_electronico + ", clave=" + clave + ", registros=" + registros + '}';
+    }
     
     public static ArrayList<String> readFileCorreos(String nfile) {
         ArrayList<String> correos = new ArrayList<>();
@@ -131,7 +136,7 @@ public class Vendedor {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
                 int ids = Integer.parseInt(tokens[0]);
-                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
+                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[5],tokens[4]);
                 vendedores.add(vend);
             }
         } catch (Exception e) {
@@ -201,8 +206,11 @@ public class Vendedor {
     
     public static Vendedor searchByCorreo(ArrayList<Vendedor> vendedores, String correo){
         for(Vendedor x: vendedores){
-            if(x.correo_electronico.equals(correo))
+            if(x.getCorreo_electronico().equals(correo)) {
                 return x;
+            } else {
+                System.out.println("Vendedor no encontrado");
+            }
         }
         return null;
     }
@@ -237,6 +245,7 @@ public class Vendedor {
             credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
         ArrayList<Vendedor> vendedores = readFileVendedores("Vendedores.txt");
+        for(Vendedor x: vendedores){System.out.println(x);}
         Vendedor vendedor = searchByCorreo(vendedores,correo);
         if (credenciales==true){
             System.out.println("Ingrese tipo de vehiculo a registrar: \n 1.Moto \n 2.Auto \n 3.Camioneta");
