@@ -17,19 +17,19 @@ public class Auto extends Vehiculo{
     private String vidrios;
     private String transmision; 
 
-    public Auto(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, String vidrios, String transmision) {
-        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio);
+    public Auto(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor, String vidrios, String transmision) {
+        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio, vendedor);
         this.vidrios = vidrios;
         this.transmision = transmision;
     }
 
-    public static Auto ingresarAuto(Scanner sc, String nfilev){
-        Vehiculo vehiculo= ingresarVehiculo(sc, nfilev);
+    public static Auto ingresarAuto(Scanner sc, String nfilev,Vendedor vendedor){
+        Vehiculo vehiculo= ingresarVehiculo(sc, nfilev,vendedor);
         System.out.println("Ingrese vidrios:");
         String vidrios = sc.nextLine();
         System.out.println("Ingrese transmision");
         String transmision= sc.nextLine();        
-        Auto auto = new Auto(vehiculo.getId(),vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(), vidrios, transmision);
+        Auto auto = new Auto(vehiculo.getId(),vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(),vehiculo.getVendedor(), vidrios, transmision);
         return auto;
     }
     

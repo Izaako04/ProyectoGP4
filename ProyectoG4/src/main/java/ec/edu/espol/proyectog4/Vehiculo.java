@@ -26,9 +26,10 @@ public class Vehiculo {
     private String color; 
     private String tipo_comb; 
     private int precio;
+    private Vendedor vendedor;
     private ArrayList<Registro> registros;
 
-    public Vehiculo(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio) {
+    public Vehiculo(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor) {
         this.id = id;
         this.placa = placa;
         this.marca = marca;
@@ -39,6 +40,7 @@ public class Vehiculo {
         this.color = color;
         this.tipo_comb = tipo_comb;
         this.precio = precio;
+        this.vendedor = vendedor;
         this.registros = new ArrayList<>();
     }
 
@@ -49,7 +51,15 @@ public class Vehiculo {
     public void setId(int id) {
         this.id = id;
     }
- 
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+    
     public String getPlaca() {
         return placa;
     }
@@ -132,7 +142,7 @@ public class Vehiculo {
 
     public void saveArchivo(String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.id+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.tipo_comb+"|"+this.año+"|"+this.recorrido+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
+            pw.println(this.id+"|"+this.vendedor.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.tipo_comb+"|"+this.año+"|"+this.recorrido+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -174,7 +184,7 @@ public class Vehiculo {
         return "id= " + id + "\n placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio + "\n registros=" + registros;
     }
     
-    public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev){
+    public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev,Vendedor vendedor){
         ArrayList<String> placas = readFilePlacas(nfilev);
         int idv = nextID(nfilev);
         System.out.println("Ingrese placa:");
@@ -200,7 +210,7 @@ public class Vehiculo {
         System.out.println("Ingrese precio:");
         int precio = Integer.parseInt(sc.nextLine());
         
-       Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio);
+       Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio,vendedor);
        return v;
     } 
 }    
