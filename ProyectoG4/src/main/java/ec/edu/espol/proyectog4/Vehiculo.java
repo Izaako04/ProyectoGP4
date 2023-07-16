@@ -146,10 +146,38 @@ public class Vehiculo {
         return null;
     }
     
+    public static ArrayList<String> readFilePlacas(String nfilev){
+        ArrayList<String> placas = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nfilev))){
+            while(sc.hasNextLine()){
+                String line = sc.nextLine();
+                String[] tokens = line.split("\\|");
+                String placau = tokens[1];
+                placas.add(placau);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return placas;
+    }
+    
+    public static boolean verificarplaca(ArrayList<String> placas, String placa){
+        for(String x: placas){
+            if(x.equals(placa))
+                return true;
+        }
+        return false;        
+    }
+    
     public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev){
+        ArrayList<String> placas = readFilePlacas(nfilev);
         int idv = nextID(nfilev);
         System.out.println("Ingrese placa:");
         String placa = sc.nextLine();
+        while(verificarplaca(placas,placa)== false){
+            System.out.println("Placa ya registrada, registre otra placa");
+            placa = sc.nextLine();
+        }            
         System.out.println("Ingrese marca");
         String marca= sc.nextLine();
         System.out.println("Ingrese modelo");
@@ -169,5 +197,5 @@ public class Vehiculo {
         
        Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio);
        return v;
-    }
+    } 
 }    
