@@ -210,13 +210,13 @@ public class Comprador {
             tipo+=0;
         }
         String tipoS="";
-        if(tipo==0){
+        if(tipo==0)
             tipoS+=" ";
-        if(tipo==1){
+        if(tipo==1)
             tipoS+="moto";
-        if(tipo==2){
+        if(tipo==2)
             tipoS+="auto";
-        if(tipo==3){
+        if(tipo==3)
             tipoS+="camioneta";
         
         
@@ -309,5 +309,3 @@ public class Comprador {
             
         }
         }
-    }
-}
