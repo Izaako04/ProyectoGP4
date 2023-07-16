@@ -290,7 +290,7 @@ public class Vendedor {
         }
     }
     
-    public static void aceptarOferta(Scanner sc, String nfilevendedores, String nfileofertas){
+    public static void aceptarOferta(Scanner sc, String nfilevendedores){
         System.out.println("Ingrese su correo electronico de vendedor");
         String correo = sc.nextLine();
         System.out.println("Ingrese su clave de vendedor");
@@ -301,27 +301,21 @@ public class Vendedor {
             credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
         int i = 0;
-//Prueba de funcionamiento con arraylist de ofertas
-        ArrayList<Vehiculo> v1 = Vehiculo.readFileVehiculos("Vehiculos.txt");
-        Oferta of1 = new Oferta(6000,"davidguevara@gmail.com",v1.get(0));
-        ArrayList<Oferta> ofertasVehiculos = new ArrayList<>();
-        ofertasVehiculos.add(of1);
-//Prueba de funcionamiento con arraylist de Ofetas
         if (credenciales==true){
-            System.out.println(ofertasVehiculos.get(i));
+            System.out.println(Oferta.ofertasVehiculos.get(i));
             System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta");
             int opcion = sc.nextInt();
             do{
                 switch(opcion){
                 case (1) -> {
                     i += 1;
-                    System.out.println(ofertasVehiculos.get(i));
+                    System.out.println(Oferta.ofertasVehiculos.get(i));
                     System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
                     opcion = sc.nextInt();
                     }
                 case (2) -> {
                     i-= 1;
-                    System.out.println(ofertasVehiculos.get(i));
+                    System.out.println(Oferta.ofertasVehiculos.get(i));
                     System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
                     opcion = sc.nextInt();
                     }
