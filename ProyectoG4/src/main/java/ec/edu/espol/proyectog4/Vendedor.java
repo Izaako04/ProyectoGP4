@@ -115,7 +115,7 @@ public class Vendedor {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[3];
+                String correo_elec = tokens[4];
                 correos.add(correo_elec);
             }
         } catch (Exception e) {
@@ -131,7 +131,7 @@ public class Vendedor {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[4];
+                String correo_elec = tokens[3];
                 claves.add(correo_elec);
             }
         }catch(Exception e){
@@ -190,11 +190,7 @@ public class Vendedor {
         Boolean correoin = false;
         ArrayList<String> correos_dados = readFileCorreos(nfilevendedores);
         for (String c : correos_dados) {
-            if (c.equals(correo)) {
-                correoin = true;
-            } else {
-                System.out.println("Correo no encontrado");
-            }
+            correoin = c.equals(correo);
         }
         System.out.println("Ingrese su clave de vendedor");
         String cv = sc.nextLine();
@@ -203,11 +199,7 @@ public class Vendedor {
         try{
             String password = toHexString(getSHA(cv));
             for (String c : claves) {
-                if (c.equals(password)) {
-                    clavein = true;
-                } else {
-                    System.out.println("Clave incorrecta");
-                }
+                clavein = c.equals(password);
             }
         }catch (NoSuchAlgorithmException e){
                 System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
@@ -215,7 +207,7 @@ public class Vendedor {
         return correoin && clavein;
     }
     
-    public static void registrarVehiculo(Scanner sc, String nfilevendedores){
+    public static void registrarVehiculo(Scanner sc, String nfilevendedores, String nfilevehiculos){
         boolean credenciales = validarCredenciales(sc, nfilevendedores);
         while(credenciales != true){
             System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
@@ -223,17 +215,20 @@ public class Vendedor {
         }
         if (credenciales==true){
             System.out.println("Ingrese tipo de vehiculo a registrar: \n 1.Moto \n 2.Auto \n 3.Camioneta");
-            int opcion = sc.nextInt();
+            int opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
                 case (1):
-                    Vehiculo moto = Vehiculo.ingresarVehiculo(sc, "vehiculos");
+                    Vehiculo moto = Vehiculo.ingresarVehiculo(sc, nfilevehiculos);
                     moto.saveArchivo("vehiculos.txt");
+                    break;
                 case (2):
-                    Auto auto = Auto.ingresarAuto(sc, "vehiculos");
+                    Auto auto = Auto.ingresarAuto(sc, nfilevehiculos);
                     auto.saveArchivo("vehiculos.txt");
+                    break;
                 case (3):
-                    Camioneta camioneta = Camioneta.ingresarCamioneta(sc, "vehiculos");
+                    Camioneta camioneta = Camioneta.ingresarCamioneta(sc,nfilevehiculos);
                     camioneta.saveArchivo("vehiculos.txt");
+                    break;
             }
         }
     }

@@ -179,7 +179,7 @@ public class Vehiculo {
         int idv = nextID(nfilev);
         System.out.println("Ingrese placa:");
         String placa = sc.nextLine();
-        while(verificarplaca(placas,placa)== false){
+        while(verificarplaca(placas,placa)== true){
             System.out.println("Placa ya registrada, registre otra placa");
             placa = sc.nextLine();
         }            
@@ -190,15 +190,15 @@ public class Vehiculo {
         System.out.println("Ingrese tipo de motor");
         String tmotor= sc.nextLine();
         System.out.println("Ingrese año:");
-        int año = sc.nextInt();
+        int año = Integer.parseInt(sc.nextLine());
         System.out.println("Ingrese recorrido");
-        int recorrido= sc.nextInt();
+        int recorrido= Integer.parseInt(sc.nextLine());
         System.out.println("Ingrese color:");
         String color = sc.nextLine();
         System.out.println("Ingrese tipo de combustible");
         String tcombustible= sc.nextLine();
         System.out.println("Ingrese precio:");
-        int precio = sc.nextInt();
+        int precio = Integer.parseInt(sc.nextLine());
         
        Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio);
        return v;

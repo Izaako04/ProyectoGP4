@@ -62,7 +62,7 @@ public class Util {
     
         public static void crearArchivo(String nfile){
         try{
-            PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile)));
+            PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true));
             pw.close();
         } catch(FileNotFoundException e){
             System.out.println(e.getMessage());

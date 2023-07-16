@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyectog4;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,13 +19,13 @@ public class Menu {
                            3. Aceptar oferta
                            4. Regresar""");
         Scanner sc= new Scanner(System.in);
-        int opcion= sc.nextInt();
+        int opcion= Integer.parseInt(sc.nextLine());
         
         if (opcion==1){
             Vendedor.nextVendedor(sc,"Vendedores.txt");
         }
         if (opcion==2){
-            Vendedor.registrarVehiculo(sc, "Vendedores.txt");
+            Vendedor.registrarVehiculo(sc, "Vendedores.txt","Vehiculos.txt");
         }
         if (opcion==3)
             System.out.println("falta aceptarOferta");
