@@ -33,7 +33,7 @@ public class Menu {
                            2. Registrar un nuevo veh\u00edculo
                            3. Aceptar oferta
                            4. Regresar""");
-            miniopcion= Integer.parseInt(sc.nextLine());
+            miniopcion=sc.nextInt();
         }
     }
            

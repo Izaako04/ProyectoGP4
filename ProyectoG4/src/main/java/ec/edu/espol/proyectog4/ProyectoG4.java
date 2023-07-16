@@ -39,7 +39,8 @@ public class ProyectoG4 {
                            1. Vendedor
                            2. Comprador
                            3. Salir""");
-            opcion= Integer.parseInt(sc.nextLine());         
+            System.out.println("Ingrese una opcion");
+            opcion=sc.nextInt();         
         }       
     }   
 }    

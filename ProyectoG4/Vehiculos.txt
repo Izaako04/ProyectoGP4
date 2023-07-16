@@ -1,3 +1,0 @@
-1|GNO868|Ford|F-150 Lariat Flareside|V8|2005|125000|Gris|super|12000automatica|
-2|GNE435|Ford|F-150|V10|2014|86000|azul|super|36000|
-3|NBD831|Ford|Ranger|V8|2015|45000|negro|super|45000|4x4
