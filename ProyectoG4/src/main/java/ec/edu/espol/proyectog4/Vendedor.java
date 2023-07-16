@@ -120,7 +120,7 @@ public class Vendedor {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[5];
+                String correo_elec = tokens[4];
                 correos.add(correo_elec);
             }
         } catch (Exception e) {
@@ -136,7 +136,7 @@ public class Vendedor {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
                 int ids = Integer.parseInt(tokens[0]);
-                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[5],tokens[4]);
+                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
                 vendedores.add(vend);
             }
         } catch (Exception e) {
@@ -151,7 +151,7 @@ public class Vendedor {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[4];
+                String correo_elec = tokens[5];
                 claves.add(correo_elec);
             }
         }catch(Exception e){
@@ -183,12 +183,12 @@ public class Vendedor {
                     if (c.equals(correo)) {
                     System.out.println("Correo ya registrado");
                     } else {
-                    Vendedor v = new Vendedor(id_vendedor,n,ape,org,password,correo);
+                    Vendedor v = new Vendedor(id_vendedor,n,ape,org,correo,password);
                     v.saveArchivo(nfileVendores);
                     }
                 }
             }else{
-                Vendedor v = new Vendedor(id_vendedor,n,ape,org,password,correo);
+                Vendedor v = new Vendedor(id_vendedor,n,ape,org,correo,password);
                 v.saveArchivo(nfileVendores);
             }                
         } catch (NoSuchAlgorithmException e) {
@@ -211,7 +211,7 @@ public class Vendedor {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
                 int ids = Integer.parseInt(tokens[0]);
-                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[5],tokens[4]);
+                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
                 vendedores.add(vend);
             }
         } catch (Exception e) {
@@ -262,10 +262,13 @@ public class Vendedor {
         boolean credenciales = validarCredenciales(correo, cv, nfilevendedores);
         while(credenciales != true){
             System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
+            System.out.println("Ingrese su correo electronico de vendedor");
+            correo = sc.nextLine();
+            System.out.println("Ingrese su clave de vendedor");
+            cv = sc.nextLine();
             credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
         ArrayList<Vendedor> vendedores = readFileVendedores("Vendedores.txt");
-        for(Vendedor x: vendedores){System.out.println(x);}
         Vendedor vendedor = searchByCorreo(vendedores,correo);
         if (credenciales==true){
             System.out.println("Ingrese tipo de vehiculo a registrar: \n 1.Moto \n 2.Auto \n 3.Camioneta");
