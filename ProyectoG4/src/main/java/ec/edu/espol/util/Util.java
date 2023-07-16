@@ -5,6 +5,9 @@
 package ec.edu.espol.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -55,5 +58,14 @@ public class Util {
         }
  
         return hexString.toString();
+    }
+    
+        public static void crearArchivo(String nfile){
+        try{
+            PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile)));
+            pw.close();
+        } catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

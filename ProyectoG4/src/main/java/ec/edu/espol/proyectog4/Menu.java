@@ -21,10 +21,10 @@ public class Menu {
         int opcion= sc.nextInt();
         
         if (opcion==1){
-            Vendedor.nextVendedor(sc,"Vendedores");
+            Vendedor.nextVendedor(sc,"Vendedores.txt");
         }
         if (opcion==2){
-            Vendedor.registrarVehiculo(sc, "Vendedor.txt");
+            Vendedor.registrarVehiculo(sc, "Vendedores.txt");
         }
         if (opcion==3)
             System.out.println("falta aceptarOferta");

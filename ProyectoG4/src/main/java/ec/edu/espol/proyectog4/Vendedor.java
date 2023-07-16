@@ -4,7 +4,6 @@
  */
 package ec.edu.espol.proyectog4;
 
-import java.util.ArrayList;
 import static ec.edu.espol.util.Util.getSHA;
 import static ec.edu.espol.util.Util.nextID;
 import static ec.edu.espol.util.Util.toHexString;
@@ -13,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -109,20 +109,21 @@ public class Vendedor {
         }
     }
     
-    public static ArrayList<String> readFileCorreos(String nfile){
+    public static ArrayList<String> readFileCorreos(String nfile) {
         ArrayList<String> correos = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfile))){
-            while(sc.hasNextLine()){
+        try (Scanner sc = new Scanner(new File(nfile))) {
+            while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
                 String correo_elec = tokens[3];
                 correos.add(correo_elec);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return correos;
     }
+
     
     public static ArrayList<String> readFileClaves(String nfile){
         ArrayList<String> claves = new ArrayList<>();
@@ -139,8 +140,10 @@ public class Vendedor {
         return claves;
     }
             
-    public static void nextVendedor(Scanner sc,String nfileVendores){
+    public static void nextVendedor(Scanner sc, String nfileVendores) {
         int id_vendedor = nextID(nfileVendores);
+        sc.useDelimiter("\n");
+        sc.useLocale(Locale.US);
         System.out.println("Ingrese nombres");
         String n = sc.next();
         System.out.println("Ingrese apellidos");
@@ -150,25 +153,27 @@ public class Vendedor {
         System.out.println("Ingrese clave");
         String cv = sc.next();
         String password;
-        try{
+        try {
             password = toHexString(getSHA(cv));
             System.out.println("Ingrese correo");
             String correo = sc.next();
-            String correof;
             ArrayList<String> correos_dados = readFileCorreos(nfileVendores);
-            for (String c : correos_dados) {
-                if (c.equals(correo)) {
+            if(!correos_dados.isEmpty()){
+                for (String c : correos_dados) {
+                    if (c.equals(correo)) {
                     System.out.println("Correo ya registrado");
-                } else {
-                    correof = correo;
-                    Vendedor v = new Vendedor(id_vendedor,n,ape,org,password,correof);
+                    } else {
+                    Vendedor v = new Vendedor(id_vendedor,n,ape,org,password,correo);
                     v.saveArchivo(nfileVendores);
+                    }
                 }
-            }
-        }catch (NoSuchAlgorithmException e) {
+            }else{
+                Vendedor v = new Vendedor(id_vendedor,n,ape,org,password,correo);
+                v.saveArchivo(nfileVendores);
+            }                
+        } catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
         }
-        
     }
     
     public static Vendedor searchByID(ArrayList<Vendedor> vendedores, int id){
