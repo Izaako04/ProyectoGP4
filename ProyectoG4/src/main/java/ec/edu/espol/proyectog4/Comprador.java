@@ -128,20 +128,23 @@ public class Comprador {
             password = toHexString(getSHA(cv));
             System.out.println("Ingrese correo");
             String correo = sc.next();
-            String correof;
             ArrayList<String> correos_dados = readFileCorreos(nfile);
-            for (String c : correos_dados) {
-                if (c.equals(correo)) {
+            if(!correos_dados.isEmpty()){
+                for (String c : correos_dados) {
+                    if (c.equals(correo)) {
                     System.out.println("Correo ya registrado");
-                } else {
-                    correof = correo;
-                    Comprador comp = new Comprador(id_comprador,n,ape,org,password,correof);
-                    comp.saveArchivo(nfile);
+                    } else {
+                    Vendedor v = new Vendedor(id_comprador,n,ape,org,password,correo);
+                    v.saveArchivo(nfile);
+                    }
                 }
-            }
+            }else{
+                Vendedor v = new Vendedor(id_comprador,n,ape,org,password,correo);
+                v.saveArchivo(nfile);
+            }                
         }catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
-        }        
+        }
     }
     
     public ArrayList<Vehiculo> identificarTipo(String nfile, String tipo){
