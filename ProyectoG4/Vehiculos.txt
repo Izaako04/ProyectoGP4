@@ -1,1 +1,1 @@
-1|1|NFD435|Honda|Italika|V3|diesel|2010|54600|54600|roja|diesel|8000
+1|1|NFD435|Honda|Italika|V3|2010|54600|roja|diesel|8000

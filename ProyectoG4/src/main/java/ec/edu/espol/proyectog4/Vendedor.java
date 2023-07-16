@@ -195,6 +195,14 @@ public class Vendedor {
             System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
         }
     }
+    
+        public static Vendedor searchByID(ArrayList<Vendedor> v, int id){
+            for(Vendedor x: v){
+                if(x.id==id)
+                    return x;
+        }
+        return null;
+    }
 
     public static Vendedor searchByID(String nfilevendedores, int id){
         ArrayList<Vendedor> vendedores = new ArrayList<>();
@@ -277,10 +285,6 @@ public class Vendedor {
                     break;
             }
         }
-    }
-    
-    public static juntarOfertasPorVendedor(String nfileofertas, String nfilevehiculo){
-        
     }
     
     public static void aceptarOferta(Scanner sc, String nfilevendedores, ArrayList<Oferta> ofertasVehiculos){
