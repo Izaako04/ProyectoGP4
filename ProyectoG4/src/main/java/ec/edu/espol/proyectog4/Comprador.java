@@ -287,24 +287,53 @@ public class Comprador {
         }
         
         ArrayList<Vehiculo> listaSel= identificarRango(nfile,tipoS,recorridoMin,recorridoMax,anioMin,anioMax,precioMin,precioMax);
-        
-        for(int i=0;i<listaSel.size();i++){
+        int i=0;
+        int x= 0;
+        while(x==0){
+            System.out.println("RESULTADOS DE LA BÚSQUEDA");
             Vehiculo v=listaSel.get(i);
             v.toString();
-            System.out.println("¿Desea hacer una oferta? si/no ");
-            String resp=sc.nextLine();
+            int resp=0;
+            if(i==0){
+                System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver siguiente vehiculo \n 9.Salir");
+                resp=sc.nextInt();
+            } 
+            else if(i>0 && i<listaSel.size()-1){
+                System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver siguiente vehiculo \n 3.Ver anterior vehiculo \n 9.Salir");
+                resp=sc.nextInt();
+            }
+            else if(i==listaSel.size()-1){
+                System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver anterior vehiculo \n 9.Salir");
+                resp=sc.nextInt();
+            }
+            Oferta off;
+            if (resp==1){
+                System.out.println("Ingrese su oferta:");
+                double ofertaIn=sc.nextDouble();
+                System.out.println("Ingrese su correo: ");
+                String correoIn=sc.nextLine();
+                off=new Oferta(ofertaIn,correoIn,v);
+                i++;
+            }
+            else if(resp==3){
+                i--;
+            }
+            else if(resp==9){
+                x=0;
+            }
+            else if(resp==2){
+                if(i>=0 && i<listaSel.size()-1)
+                    i++;
+                else {
+                    i--;
+                }
+            }
             
-            Oferta ofert;
-            if(resp.toLowerCase().equals("si")){
-                System.out.println("Ingrese su oferta :");
-                int ofertaIn=sc.nextInt();
-                ofert= new Oferta(ofertaIn,v,);
-            }
-            else{
+            
+        }
+            
                 
-            }
-                
-            }
+            
             
             
         }

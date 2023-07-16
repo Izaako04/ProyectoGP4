@@ -5,17 +5,17 @@
 package ec.edu.espol.proyectog4;
 
 public class Oferta {
-    private int precio_oferta;
+    private double precio_oferta;
     private String correo;
     private Vehiculo vehiculo;
 
-    public Oferta(int precio_oferta, String correo, Vehiculo vehiculo) {
+    public Oferta(double precio_oferta, String correo, Vehiculo vehiculo) {
         this.precio_oferta = precio_oferta;
         this.correo = correo;
         this.vehiculo = vehiculo;
     }
 
-    public int getPrecio_oferta() {
+    public double getPrecio_oferta() {
         return precio_oferta;
     }
 
