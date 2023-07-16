@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyectog4;
 
+import ec.edu.espol.util.Util;
 import static ec.edu.espol.util.Util.nextID;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -142,7 +143,7 @@ public class Vehiculo {
 
     public void saveArchivo(String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.id+"|"+this.vendedor.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.tipo_comb+"|"+this.año+"|"+this.recorrido+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
+            pw.println(this.id+"|"+this.vendedor.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.año+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -169,6 +170,27 @@ public class Vehiculo {
             System.out.println(e.getMessage());
         }
         return placas;
+    }
+           
+    public static ArrayList<Vehiculo> readFileVehiculos(String nfilev){
+        ArrayList<Vehiculo> vs = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nfilev))){
+            while(sc.hasNextLine()){
+                String line = sc.nextLine();
+                String[] tokens = line.split("\\|");
+                int idvh = Integer.parseInt(tokens[0]);
+                int anio = Integer.parseInt(tokens[7]);
+                int km = Integer.parseInt(tokens[8]);
+                int precio = Integer.parseInt(tokens[11]);
+                int idvn = Integer.parseInt(tokens[1]);
+                Vendedor vend = Vendedor.searchByID("Vendedores.txt", idvn);
+                Vehiculo v = new Vehiculo(idvh,tokens[2],tokens[3],tokens[4],tokens[5],anio,km,tokens[9],tokens[10],precio,vend);
+                vs.add(v);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return vs;
     }
     
     public static boolean verificarplaca(ArrayList<String> placas, String placa){
@@ -212,5 +234,5 @@ public class Vehiculo {
         
        Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio,vendedor);
        return v;
-    } 
-}    
+    }
+}

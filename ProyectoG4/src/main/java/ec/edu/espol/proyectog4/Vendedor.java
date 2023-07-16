@@ -195,8 +195,28 @@ public class Vendedor {
             System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
         }
     }
+    
+        public static Vendedor searchByID(ArrayList<Vendedor> v, int id){
+            for(Vendedor x: v){
+                if(x.id==id)
+                    return x;
+        }
+        return null;
+    }
 
-    public static Vendedor searchByID(ArrayList<Vendedor> vendedores, int id){
+    public static Vendedor searchByID(String nfilevendedores, int id){
+        ArrayList<Vendedor> vendedores = new ArrayList<>();
+        try (Scanner sc = new Scanner(new File(nfilevendedores))) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] tokens = line.split("\\|");
+                int ids = Integer.parseInt(tokens[0]);
+                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[5],tokens[4]);
+                vendedores.add(vend);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         for(Vendedor x: vendedores){
             if(x.id==id)
                 return x;
@@ -267,7 +287,7 @@ public class Vendedor {
         }
     }
     
-    public static void aceptarOferta(Scanner sc, String nfilevendedores, String nfilecompradores, ArrayList<Oferta> ofertasVehiculos){
+    public static void aceptarOferta(Scanner sc, String nfilevendedores, ArrayList<Oferta> ofertasVehiculos){
         System.out.println("Ingrese su correo electronico de vendedor");
         String correo = sc.nextLine();
         System.out.println("Ingrese su clave de vendedor");
@@ -297,10 +317,8 @@ public class Vendedor {
                     opcion = sc.nextInt();
                     }
                 }
-            }while(opcion != 1);
-            
+            }while(opcion != 1); 
         }
-            
     }
 
 }
