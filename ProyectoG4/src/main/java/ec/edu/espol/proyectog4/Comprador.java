@@ -112,38 +112,7 @@ public class Comprador {
         return claves;
     }
     
-    public static String[] validarCredenciales(Scanner sc, String nfileComp){
-        String[] resultado= new String[2];
-        System.out.println("Ingrese su correo electronico de comprador");
-        String correo = sc.nextLine();
-        ArrayList<String> correos_dados = readFileCorreos(nfileComp);
-        for (String c : correos_dados) {
-            if (c.equals(correo)) {
-                resultado[0]=correo;
-            } else {
-                System.out.println("Correo no encontrado");
-            }
-        }
-        System.out.println("Ingrese su clave de comprador");
-        String cv = sc.nextLine();
-        ArrayList<String> claves = readFileClaves(nfileComp);
-        try{
-            String password = toHexString(getSHA(cv));
-            for (String c : claves) {
-                if (c.equals(password)) {
-                    resultado[1]=cv;
-                } else {
-                    System.out.println("Clave incorrecta");
-                }
-            }
-        }catch (NoSuchAlgorithmException e){
-                System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
-            }
-        if ((correoin && clavein)==true)
-            return resultado;
         
-    }
-    
     public static void nextComprador(Scanner sc,String nfile){
         int id_comprador = nextID(nfile);
         System.out.println("Ingrese nombres");
@@ -321,9 +290,21 @@ public class Comprador {
             v.toString();
             System.out.println("¿Desea hacer una oferta? si/no ");
             String resp=sc.nextLine();
-            boolean credenciales=validarCredenciales(sc,nfile);
-            if(resp.toLowerCase().equals("si"))
+            
+            Oferta ofert;
+            if(resp.toLowerCase().equals("si")){
+                System.out.println("Ingrese su oferta :");
+                int ofertaIn=sc.nextInt();
+                ofert= new Oferta(ofertaIn,v,);
+            }
+            else{
                 
+            }
+                
+            }
+            
+            
+        }
         }
     }
 }
