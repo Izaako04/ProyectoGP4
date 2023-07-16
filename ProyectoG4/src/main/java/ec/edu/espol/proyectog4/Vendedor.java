@@ -232,5 +232,35 @@ public class Vendedor {
             }
         }
     }
+    
+    public static void aceptarOferta(Scanner sc, String nfilevendedores, String nfilecompradores, ArrayList<Oferta> ofertasVehiculos){
+        boolean credenciales = validarCredenciales(sc, nfilevendedores);
+        while(credenciales != true){
+            System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
+            credenciales = validarCredenciales(sc, nfilevendedores);
+        }
+        int i=0;
+        if (credenciales==true){
+            System.out.println(ofertasVehiculos.get(i));
+            System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta");
+            int opcion = sc.nextInt();
+            do{
+                switch(opcion){
+                case (1):
+                    i += 1;
+                    System.out.println(ofertasVehiculos.get(i));
+                    System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
+                    opcion = sc.nextInt();
+                case (2):
+                    i-= 1;
+                    System.out.println(ofertasVehiculos.get(i));
+                    System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
+                    opcion = sc.nextInt();
+                }
+            }while(opcion != 1);
+            
+        }
+            
+    }
 
 }
