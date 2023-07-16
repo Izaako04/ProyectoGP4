@@ -266,6 +266,9 @@ public class Comprador {
         ArrayList<Vehiculo> listaSel= identificarRango(nfile,tipoS,recorridoMin,recorridoMax,anioMin,anioMax,precioMin,precioMax);
         
         for(int i=0;i<listaSel.size();i++){
+            Vehiculo v=listaSel.get(i);
+            if(v instanceof)
+            
             
         }
     }
