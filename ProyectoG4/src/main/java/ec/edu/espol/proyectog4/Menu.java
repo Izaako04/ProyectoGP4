@@ -27,7 +27,7 @@ public class Menu {
             else if(miniopcion == 2)
                 Vendedor.registrarVehiculo(sc, "Vendedores.txt","Vehiculos.txt");
             else if(miniopcion == 3)
-                Vendedor.aceptarOferta(sc,"Vendedores.txt");
+                Vendedor.aceptarOferta(sc,"Vendedores.txt","Vehiculos.txt");
             System.out.println("""
                            1. Registrar un nuevo vendedor
                            2. Registrar un nuevo veh\u00edculo

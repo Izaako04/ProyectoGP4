@@ -48,4 +48,23 @@ public class Oferta {
        return vehiculo.getMarca()+vehiculo.getModelo()+this.precio_oferta;
    }
    
+    public static ArrayList<Double> precioVeh(String placa){
+        ArrayList<Double> precio= new ArrayList<>();
+        for(Oferta o: Oferta.ofertasVehiculos ){
+            if(o.getVehiculo().getPlaca().equals(placa) ){
+               precio.add(o.getPrecio_oferta());
+            }
+        }
+        return precio;
+    }
+    
+    public static ArrayList<String> correoVeh(String placa){
+        ArrayList<String> correo= new ArrayList<>();
+        for(Oferta o: Oferta.ofertasVehiculos ){
+            if(o.getVehiculo().getPlaca().equals(placa) ){
+               correo.add(o.getCorreo());
+            }
+        }
+        return correo;
+    }
 }

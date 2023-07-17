@@ -290,7 +290,7 @@ public class Vendedor {
         }
     }
     
-    public static void aceptarOferta(Scanner sc, String nfilevendedores){
+    public static void aceptarOferta(Scanner sc, String nfilevendedores,String nfileVeh){
         System.out.println("Ingrese su correo electronico de vendedor");
         String correo = sc.nextLine();
         System.out.println("Ingrese su clave de vendedor");
@@ -300,28 +300,52 @@ public class Vendedor {
             System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
             credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
-        int i = 0;
-        if (credenciales==true){
-            System.out.println(Oferta.ofertasVehiculos.get(i));
-            System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta");
-            int opcion = sc.nextInt();
-            do{
-                switch(opcion){
-                case (1) -> {
-                    i += 1;
-                    System.out.println(Oferta.ofertasVehiculos.get(i));
-                    System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
-                    opcion = sc.nextInt();
-                    }
-                case (2) -> {
-                    i-= 1;
-                    System.out.println(Oferta.ofertasVehiculos.get(i));
-                    System.out.println("1.Aceptar Oferta \n 2.Siguiente Oferta \n 3.Anterior Oferta");
-                    opcion = sc.nextInt();
-                    }
+        int i=0;
+        int x= 0;
+        while(x==0){
+            System.out.println("Ingrese la placa: ");
+            String placaIn=sc.nextLine();
+            ArrayList<Vehiculo> vehSel= Vehiculo.vehConPlaca(nfileVeh, placaIn);
+            Vehiculo vehiculoI=vehSel.get(i);
+            ArrayList<Double> precioSel=Oferta.precioVeh(placaIn);
+            double precioI=precioSel.get(i);
+            ArrayList<String> correoSel=Oferta.correoVeh(placaIn);
+            String correoI=correoSel.get(i);
+            
+            System.out.println(vehiculoI.getMarca()+" "+vehiculoI.getModelo()+" Precio: "+vehiculoI.getPrecio() );
+            System.out.println("Se han realizado "+ precioSel.size() +" ofertas");
+            System.out.println(" ");
+            System.out.println("Oferta"+(i+1));
+            System.out.println("Correo: "+correoI);
+            System.out.println("Precio ofertado: "+ precioI);
+            
+            int resp=0;
+            if(i==0){
+                System.out.println("Ingrese el número de la opción que desea: \n 0.Aceptar oferta \n 1.Siguiente oferta ");
+                resp=sc.nextInt();
+            } 
+            else if(i>0 && i<vehSel.size()-1){
+                System.out.println("Ingrese el número de la opción que desea: \n 0.Aceptar oferta \n 1.Siguiente oferta \n 2. Anteior oferta");
+                resp=sc.nextInt();
+            }
+            else if(i==vehSel.size()-1){
+                System.out.println("Ingrese el número de la opción que desea: \n 0.Aceptar oferta \n 1.Anterior oferta ");
+                resp=sc.nextInt();
+            }
+            
+            if (resp==0){
+                // ACEPTAR OFERTA
+            }
+            else if(resp==1){
+                if(i>=0 && i<vehSel.size()-1)
+                    i++;
+                else {
+                    i--;
                 }
-            }while(opcion != 1);
-            System.out.println("Enviando correo");
+            }
+            else if(resp==2)
+                i--;
+           
         }
     }
 }

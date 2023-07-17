@@ -163,13 +163,23 @@ public class Vehiculo {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String placau = tokens[1];
+                String placau = tokens[2];
                 placas.add(placau);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
         return placas;
+    }
+    
+    public static ArrayList<Vehiculo> vehConPlaca(String nfilev,String placa){
+        ArrayList<Vehiculo> vehiculos=readFileVehiculos(nfilev);
+        for (Vehiculo v:vehiculos){
+            if(v.getPlaca().equals(placa)){
+                vehiculos.add(v);
+            }
+        }
+        return vehiculos;
     }
            
     public static ArrayList<Vehiculo> readFileVehiculos(String nfilev){
@@ -179,12 +189,12 @@ public class Vehiculo {
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
                 int idvh = Integer.parseInt(tokens[0]);
-                int anio = Integer.parseInt(tokens[7]);
-                int km = Integer.parseInt(tokens[8]);
-                int precio = Integer.parseInt(tokens[11]);
+                int anio = Integer.parseInt(tokens[6]);
+                int km = Integer.parseInt(tokens[7]);
+                int precio = Integer.parseInt(tokens[10]);
                 int idvn = Integer.parseInt(tokens[1]);
                 Vendedor vend = Vendedor.searchByID("Vendedores.txt", idvn);
-                Vehiculo v = new Vehiculo(idvh,tokens[2],tokens[3],tokens[4],tokens[5],anio,km,tokens[9],tokens[10],precio,vend);
+                Vehiculo v = new Vehiculo(idvh,tokens[2],tokens[3],tokens[4],tokens[5],anio,km,tokens[8],tokens[9],precio,vend);
                 vs.add(v);
             }
         }catch(Exception e){
