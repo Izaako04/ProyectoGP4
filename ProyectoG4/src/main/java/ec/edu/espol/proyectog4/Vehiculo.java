@@ -157,6 +157,25 @@ public class Vehiculo {
         return null;
     }
     
+    public static int searchPosByPlaca(String nfilev,String placa){
+        ArrayList<String> placas = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nfilev))){
+            while(sc.hasNextLine()){
+                String line = sc.nextLine();
+                String[] tokens = line.split("\\|");
+                String placau = tokens[2];
+                placas.add(placau);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        for(int i = 0;i<placas.size();i++){
+            if(placas.get(i).equals(placa))
+                return i;
+        }
+        return 0;
+    }
+    
     public static ArrayList<String> readFilePlacas(String nfilev){
         ArrayList<String> placas = new ArrayList<>();
         try(Scanner sc = new Scanner(new File(nfilev))){

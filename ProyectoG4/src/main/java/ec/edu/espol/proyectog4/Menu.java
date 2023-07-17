@@ -16,7 +16,7 @@ public class Menu {
         System.out.println("""
                            1. Registrar un nuevo vendedor
                            2. Registrar un nuevo veh\u00edculo
-                           3. Aceptar oferta
+                           3. Ver ofertas realizadas
                            4. Regresar""");
         Scanner sc= new Scanner(System.in);
         int miniopcion= Integer.parseInt(sc.nextLine());
@@ -31,7 +31,7 @@ public class Menu {
             System.out.println("""
                            1. Registrar un nuevo vendedor
                            2. Registrar un nuevo veh\u00edculo
-                           3. Aceptar oferta
+                           3. Ver ofertas realizadas
                            4. Regresar""");
             miniopcion=Integer.parseInt(sc.nextLine());
         }

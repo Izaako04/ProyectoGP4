@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyectog4;
 
+import ec.edu.espol.util.Util;
 import static ec.edu.espol.util.Util.getSHA;
 import static ec.edu.espol.util.Util.nextID;
 import static ec.edu.espol.util.Util.toHexString;
@@ -334,7 +335,9 @@ public class Vendedor {
             }
             
             if (resp==0){
-                // ACEPTAR OFERTA
+                Util.enviarCorreo(correoI,"Oferta Aceptada","La oferta que ha realizado ha sido aceptada por el vendedor del vehiculo",correo,cv);
+                int pos = Vehiculo.searchPosByPlaca(nfileVeh, placaIn);
+                Util.eliminarInformacion("Vehiculos.txt", pos);
             }
             else if(resp==1){
                 if(i>=0 && i<vehSel.size()-1)

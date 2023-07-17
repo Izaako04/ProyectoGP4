@@ -4,9 +4,13 @@
  */
 package ec.edu.espol.util;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -67,7 +71,7 @@ public class Util {
         return hexString.toString();
     }
     
-        public static void crearArchivo(String nfile){
+    public static void crearArchivo(String nfile){
         try{
             PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true));
             pw.close();
@@ -75,7 +79,47 @@ public class Util {
             System.out.println(e.getMessage());
         }
     }
-    public void enviarCorreo(String destinatario, String asunto, String cuerpo,String correo, String clave) {
+    
+    public static void eliminarInformacion(String nfile,int idLine){
+        String tempFile = "temp.txt";
+        File oldFile = new File(nfile);
+        File newFile = new File(tempFile);
+        
+        int line = 0;
+        String currentline;
+        
+        try{
+            FileWriter fw = new FileWriter(tempFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            
+            FileReader fr = new FileReader(nfile);
+            BufferedReader br = new BufferedReader(fr);
+            
+            while((currentline = br.readLine())!= null){
+                line++;
+                
+                if(idLine != line){
+                    pw.println(currentline);
+                }
+            }
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+            
+            oldFile.delete();
+            File dump = new File(nfile);
+            newFile.renameTo(dump);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
+    public static void enviarCorreo(String destinatario, String asunto, String cuerpo,String correo, String clave) {
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
         props.put("mail.smtp.user", correo);

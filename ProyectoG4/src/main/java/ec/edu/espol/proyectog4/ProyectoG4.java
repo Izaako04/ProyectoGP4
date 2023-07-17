@@ -16,8 +16,8 @@ public class ProyectoG4 {
     public static void main(String[] args) {
         System.out.println("""
                            Menú de Opciones:
-                           1. Vendedor
-                           2. Comprador
+                           1. Métodos de Vendedor
+                           2. Métodos de Comprador
                            3. Salir""");
         Scanner sc= new Scanner(System.in);
         sc.useDelimiter("\n");
@@ -36,8 +36,8 @@ public class ProyectoG4 {
                 }
             System.out.println("""
                            Menú de Opciones:
-                           1. Vendedor
-                           2. Comprador
+                           1. Métodos de Vendedor
+                           2. Métodos de Comprador
                            3. Salir""");
             System.out.println("Ingrese una opcion");
             opcion=sc.nextInt();         

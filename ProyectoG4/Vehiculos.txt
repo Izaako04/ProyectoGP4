@@ -1,1 +1,2 @@
 1|1|NFD435|Honda|Italika|V3|2010|54600|roja|diesel|8000
+2|1|GNO868|Ford|F-150 Lariat Flareside|V8|2005|125000|plateado|super|11000|4x4
