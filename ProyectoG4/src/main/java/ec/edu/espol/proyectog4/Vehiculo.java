@@ -4,7 +4,6 @@
  */
 package ec.edu.espol.proyectog4;
 
-import ec.edu.espol.util.Util;
 import static ec.edu.espol.util.Util.nextID;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,7 +27,6 @@ public class Vehiculo {
     private String tipo_comb; 
     private int precio;
     private Vendedor vendedor;
-    private ArrayList<Registro> registros;
 
     public Vehiculo(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor) {
         this.id = id;
@@ -42,7 +40,6 @@ public class Vehiculo {
         this.tipo_comb = tipo_comb;
         this.precio = precio;
         this.vendedor = vendedor;
-        this.registros = new ArrayList<>();
     }
 
     public int getId() {
@@ -131,14 +128,6 @@ public class Vehiculo {
 
     public void setPrecio(int precio) {
         this.precio = precio;
-    }
-
-    public ArrayList<Registro> getRegistros() {
-        return registros;
-    }
-
-    public void setRegistros(ArrayList<Registro> registros) {
-        this.registros = registros;
     }
 
     public void saveArchivo(String nfile){
@@ -232,7 +221,7 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "id= " + id + "\n placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio + "\n registros=" + registros;
+        return "id= " + id + "\n placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio;
     }
     
     public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev,Vendedor vendedor){

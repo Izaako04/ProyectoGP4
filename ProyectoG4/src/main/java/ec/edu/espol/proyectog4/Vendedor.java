@@ -24,7 +24,6 @@ public class Vendedor {
     private String organizacion;
     private String correo_electronico;
     private String clave;
-    private ArrayList<Registro> registros;
     
     public Vendedor(int id, String nombres, String apellidos, String organizacion, String correo_electronico, String clave) {
         this.id = id;
@@ -33,7 +32,6 @@ public class Vendedor {
         this.organizacion = organizacion;
         this.correo_electronico = correo_electronico;
         this.clave = clave;
-        this.registros = new ArrayList<>();
     }
 
     public int getId() {
@@ -84,14 +82,6 @@ public class Vendedor {
         this.clave = clave;
     }
 
-    public ArrayList<Registro> getRegistros() {
-        return registros;
-    }
-
-    public void setRegistros(ArrayList<Registro> registros) {
-        this.registros = registros;
-    }
-    
     public void saveArchivo(String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
             pw.println(this.id+"|"+this.nombres+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correo_electronico+"|"+this.clave);
@@ -112,7 +102,7 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return "Vendedor{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", organizacion=" + organizacion + ", correo_electronico=" + correo_electronico + ", clave=" + clave + ", registros=" + registros + '}';
+        return "Vendedor{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", organizacion=" + organizacion + ", correo_electronico=" + correo_electronico + ", clave=" + clave;
     }
     
     public static ArrayList<String> readFileCorreos(String nfile) {
