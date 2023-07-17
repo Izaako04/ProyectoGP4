@@ -1,3 +1,4 @@
 1|1|NFD435|Honda|Italika|V3|2010|54600|roja|diesel|8000
 2|1|GNO868|Ford|F-150 Lariat Flareside|V8|2005|125000|plateado|super|11000|4x4
 3|2|hhh9|jj|j|h|1980|1892|jsks|jsks|11111
+4|1|HDF345|Suzuki|Lancer|1.3|2017|65000|verde|diesel|6500

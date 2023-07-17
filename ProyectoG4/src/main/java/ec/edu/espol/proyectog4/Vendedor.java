@@ -240,14 +240,16 @@ public class Vendedor {
         Boolean correoin = false;
         ArrayList<String> correos_dados = readFileCorreos(nfilevendedores);
         for (String c : correos_dados) {
-            correoin = c.equals(correo);
+            if(c.equals(correo)==true)
+                correoin = true; 
         }
         Boolean clavein = false;
         ArrayList<String> claves = readFileClaves(nfilevendedores);
         try{
             String password = toHexString(getSHA(cv));
             for (String c : claves) {
-                clavein = c.equals(password);
+                if(c.equals(password)==true)
+                    clavein = true;
             }
         }catch (NoSuchAlgorithmException e){
                 System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
