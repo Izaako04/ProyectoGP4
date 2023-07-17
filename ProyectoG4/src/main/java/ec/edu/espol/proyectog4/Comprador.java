@@ -199,16 +199,17 @@ public class Comprador {
     
     
     public static void ofertarVehiculo(Scanner sc, String nfile, String fileVendedores){
-        
-        System.out.println("¿Desea ingresar tipo de vehiculo? si/no :");
-        String resp1=sc.nextLine();
+        System.out.println("¿Desea ingresar tipo de vehiculo? \n 1.Si \n 2.No :");
+        int resp1=sc.nextInt();
+        sc.nextLine();
         int tipo=0;
-        if (resp1.toLowerCase().equals("si")){
+        if (resp1==1){
             System.out.println("Ingrese el tipo de vehiculo por sú numero: \n 1.Moto \n 2.Auto \n 3.Camioneta " );
-            tipo+=sc.nextInt();
+            tipo=sc.nextInt();
+            sc.nextLine();
         }
         else{
-            tipo+=0;
+            tipo=0;
         }
         String tipoS="";
         if(tipo==0)
@@ -221,71 +222,84 @@ public class Comprador {
             tipoS+="camioneta";
         
         
-        System.out.println("¿Desea ingresar el recorrido mínimo del vehiculo? si/no :");
-        String resp2=sc.nextLine();
+        System.out.println("¿Desea ingresar el recorrido mínimo del vehiculo? \n 1.Si \n 2.No :");
+        int resp2=sc.nextInt();
+        sc.nextLine();
         int recorridoMin=0;
-        if (resp2.toLowerCase().equals("si")){
+        if (resp2==1){
             System.out.println("Ingrese el valor del recorrido mínimo del vehiculo: " );
-            recorridoMin+=sc.nextInt();
+            recorridoMin=sc.nextInt();
+            sc.nextLine();
         }
         else{
-            recorridoMin+=0;
+            recorridoMin=0;
         }    
         
-        System.out.println("¿Desea ingresar el recorrido máximo del vehiculo? si/no :");
-        String resp3=sc.nextLine();
+        System.out.println("¿Desea ingresar el recorrido máximo del vehiculo? \n 1.Si \n 2.No :");
+        int resp3=sc.nextInt();
+        sc.nextLine();
         int recorridoMax=0;
-        if (resp3.toLowerCase().equals("si")){
+        if (resp3==1){
             System.out.println("Ingrese el valor del recorrido máximo del vehiculo: " );
-            recorridoMax+=sc.nextInt();
+            recorridoMax=sc.nextInt();
+            sc.nextLine();
         }
         else{
-            recorridoMax+=Integer.MAX_VALUE;
+            recorridoMax=Integer.MAX_VALUE;
         }
         
-        System.out.println("¿Desea ingresar el año mínimo del vehiculo? si/no :");
-        String resp4=sc.nextLine();
+        System.out.println("¿Desea ingresar el año mínimo del vehiculo? \n 1.Si \n 2.No :");
+        int resp4=sc.nextInt();
+        sc.nextLine();
         int anioMin=0;
-        if (resp4.toLowerCase().equals("si")){
+        if (resp4==1){
             System.out.println("Ingrese el año mínimo del vehiculo: " );
-            anioMin+=sc.nextInt();
+            anioMin=sc.nextInt();
+            sc.nextLine();
         }
         else{
-            anioMin+=0;
+            anioMin=0;
         }
         
-        System.out.println("¿Desea ingresar el año máximo del vehiculo? si/no :");
-        String resp5=sc.nextLine();
+        System.out.println("¿Desea ingresar el año máximo del vehiculo? \n 1.Si \n 2.No :");
+        int resp5=sc.nextInt();
+        sc.nextLine();
         int anioMax=0;
-        if (resp5.toLowerCase().equals("si")){
+        if (resp5==1){
             System.out.println("Ingrese el año máximo del vehiculo: " );
-            anioMax+=sc.nextInt();
+            anioMax=sc.nextInt();
+            sc.nextLine();
         }
         else{
-            anioMax+=Integer.MAX_VALUE;
+            anioMax=Integer.MAX_VALUE;
         }
         
-        System.out.println("¿Desea ingresar el precio mínimo del vehiculo? si/no :");
-        String resp6=sc.nextLine();
+        System.out.println("¿Desea ingresar el precio mínimo del vehiculo? \n 1.Si \n 2.No :");
+        int resp6=sc.nextInt();
+        sc.nextLine();
         int precioMin=0;
-        if (resp6.toLowerCase().equals("si")){
+        if (resp6==1){
             System.out.println("Ingrese el valor del precio mínimo del vehiculo: " );
-            precioMin+=sc.nextInt();
+            precioMin=sc.nextInt();
+            sc.nextLine();
         }
         else{
-            precioMin+=0;
+            precioMin=0;
         }
         
-        System.out.println("¿Desea ingresar el precio máximo del vehiculo? si/no :");
-        String resp7=sc.nextLine();
+        System.out.println("¿Desea ingresar el precio máximo del vehiculo? \n 1.Si \n 2.No :");
+        int resp7=sc.nextInt();
+        sc.nextLine();
         int precioMax=0;
-        if (resp7.toLowerCase().equals("si")){
+        if (resp7==1){
             System.out.println("Ingrese el valor del precio máximo del vehiculo: " );
-            precioMax+=sc.nextInt();
+            precioMax=sc.nextInt();
+            sc.nextLine();
         }
         else{
-            precioMax+=Integer.MAX_VALUE;
+            precioMax=Integer.MAX_VALUE;
         }
+        sc.nextLine();
         
         ArrayList<Vehiculo> listaSel= identificarRango(nfile,tipoS,fileVendedores,recorridoMin,recorridoMax,anioMin,anioMax,precioMin,precioMax);
         int i=0;

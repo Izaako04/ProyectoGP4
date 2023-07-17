@@ -299,6 +299,10 @@ public class Vendedor {
         boolean credenciales = validarCredenciales(correo, cv, nfilevendedores);
         while(credenciales != true){
             System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
+            System.out.println("Ingrese su correo electronico de vendedor");
+            correo = sc.nextLine();
+            System.out.println("Ingrese su clave de vendedor");
+            cv = sc.nextLine();
             credenciales = validarCredenciales(correo, cv, nfilevendedores);
         }
         int i=0;
