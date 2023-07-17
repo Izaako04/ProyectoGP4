@@ -26,10 +26,10 @@ public class ProyectoG4 {
         int opcion= Integer.parseInt(sc.nextLine());
         while(opcion != 3){
             if (opcion==1){
-                Menu.Vendedor();
+                Menu.medotosVendedor();
             }
             else if(opcion==2){
-                Menu.Comprador();
+                Menu.metodosComprador();
             }
             else if(opcion==3){
                 System.out.println("Terminado con éxito");
