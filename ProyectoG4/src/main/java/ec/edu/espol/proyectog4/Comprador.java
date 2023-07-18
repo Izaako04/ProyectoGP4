@@ -197,15 +197,12 @@ public class Comprador {
     
     
     public static void ofertarVehiculo(Scanner sc, String nfile, String fileVendedores){
-        ArrayList<Oferta> ofertascreadas = new ArrayList<>();
         System.out.println("¿Desea ingresar tipo de vehiculo? \n 1.Si \n 2.No :");
-        int resp1=sc.nextInt();
-        sc.nextLine();
+        int resp1=Integer.parseInt(sc.nextLine());
         int tipo=0;
         if (resp1==1){
             System.out.println("Ingrese el tipo de vehiculo por sú numero: \n 1.Moto \n 2.Auto \n 3.Camioneta " );
-            tipo=sc.nextInt();
-            sc.nextLine();
+            tipo=Integer.parseInt(sc.nextLine());
         }
         else{
             tipo=0;
@@ -222,82 +219,71 @@ public class Comprador {
         
         
         System.out.println("¿Desea ingresar el recorrido mínimo del vehiculo? \n 1.Si \n 2.No :");
-        int resp2=sc.nextInt();
-        sc.nextLine();
+        int resp2=Integer.parseInt(sc.nextLine());
         int recorridoMin=0;
         if (resp2==1){
             System.out.println("Ingrese el valor del recorrido mínimo del vehiculo: " );
-            recorridoMin=sc.nextInt();
-            sc.nextLine();
+            recorridoMin=Integer.parseInt(sc.nextLine());
         }
         else{
             recorridoMin=0;
         }    
         
         System.out.println("¿Desea ingresar el recorrido máximo del vehiculo? \n 1.Si \n 2.No :");
-        int resp3=sc.nextInt();
-        sc.nextLine();
+        int resp3=Integer.parseInt(sc.nextLine());
         int recorridoMax=0;
         if (resp3==1){
             System.out.println("Ingrese el valor del recorrido máximo del vehiculo: " );
-            recorridoMax=sc.nextInt();
-            sc.nextLine();
+            recorridoMax=Integer.parseInt(sc.nextLine());
         }
         else{
             recorridoMax=Integer.MAX_VALUE;
         }
         
         System.out.println("¿Desea ingresar el año mínimo del vehiculo? \n 1.Si \n 2.No :");
-        int resp4=sc.nextInt();
-        sc.nextLine();
+        int resp4=Integer.parseInt(sc.nextLine());
         int anioMin=0;
         if (resp4==1){
             System.out.println("Ingrese el año mínimo del vehiculo: " );
-            anioMin=sc.nextInt();
-            sc.nextLine();
+            anioMin=Integer.parseInt(sc.nextLine());
         }
         else{
             anioMin=0;
         }
         
         System.out.println("¿Desea ingresar el año máximo del vehiculo? \n 1.Si \n 2.No :");
-        int resp5=sc.nextInt();
-        sc.nextLine();
+        int resp5= Integer.parseInt(sc.nextLine());
         int anioMax=0;
         if (resp5==1){
             System.out.println("Ingrese el año máximo del vehiculo: " );
-            anioMax=sc.nextInt();
-            sc.nextLine();
+            anioMax= Integer.parseInt(sc.nextLine());
         }
         else{
             anioMax=Integer.MAX_VALUE;
         }
         
         System.out.println("¿Desea ingresar el precio mínimo del vehiculo? \n 1.Si \n 2.No :");
-        int resp6=sc.nextInt();
-        sc.nextLine();
+        int resp6=Integer.parseInt(sc.nextLine());
         int precioMin=0;
         if (resp6==1){
             System.out.println("Ingrese el valor del precio mínimo del vehiculo: " );
-            precioMin=sc.nextInt();
-            sc.nextLine();
+            precioMin=Integer.parseInt(sc.nextLine());
         }
         else{
             precioMin=0;
         }
         
         System.out.println("¿Desea ingresar el precio máximo del vehiculo? \n 1.Si \n 2.No :");
-        int resp7=sc.nextInt();
-        sc.nextLine();
+        int resp7=Integer.parseInt(sc.nextLine());
         int precioMax=0;
         if (resp7==1){
             System.out.println("Ingrese el valor del precio máximo del vehiculo: " );
-            precioMax=sc.nextInt();
-            sc.nextLine();
+            precioMax=Integer.parseInt(sc.nextLine());
         }
         else{
             precioMax=Integer.MAX_VALUE;
         }
+        System.out.println("Presione enter para mostrar los resultados");
         sc.nextLine();
         
         ArrayList<Vehiculo> listaSel= identificarRango(nfile,tipoS,fileVendedores,recorridoMin,recorridoMax,anioMin,anioMax,precioMin,precioMax);
@@ -310,27 +296,30 @@ public class Comprador {
             int resp=0;
             if(i==0){
                 System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver siguiente vehiculo \n 9.Salir");
-                resp=sc.nextInt();
+                resp= Integer.parseInt(sc.nextLine());
             } 
             else if(i>0 && i<listaSel.size()-1){
                 System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver siguiente vehiculo \n 3.Ver anterior vehiculo \n 9.Salir");
-                resp=sc.nextInt();
+                resp=Integer.parseInt(sc.nextLine());
             }
             else if(i==listaSel.size()-1){
                 System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver anterior vehiculo \n 9.Salir");
-                resp=sc.nextInt();
+                resp=Integer.parseInt(sc.nextLine());
             }
-
+            ArrayList<Oferta> ofertasVehiculo = new ArrayList<>(); 
             Oferta off;
             if (resp==1){
-                System.out.println("Ingrese su oferta:");
-                double ofertaIn=Double.parseDouble(sc.nextLine());
                 System.out.println("Ingrese su correo: ");
-                String correoIn=sc.nextLine();
+                String correoIn= sc.nextLine();
+                System.out.println("Ingrese su oferta:");
+                double ofertaIn= Double.parseDouble(sc.nextLine());
                 off=new Oferta(ofertaIn,correoIn,v);
                 Oferta.ofertasVehiculos.add(off);
-                ofertascreadas.add(off);
+                ofertasVehiculo.add(off);
                 i++;
+                for(Oferta o: ofertasVehiculo){
+                    o.saveArchivoOferta("Ofertas.txt");
+                }
             }
             else if(resp==3){
                 i--;
@@ -344,10 +333,7 @@ public class Comprador {
                 else {
                     i--;
                 }
-            }
-            for(Oferta o: ofertascreadas){
-                o.saveArchivoOferta("Ofertas.txt");
-            }
-        }    
+            }     
+        }
     }
 }
