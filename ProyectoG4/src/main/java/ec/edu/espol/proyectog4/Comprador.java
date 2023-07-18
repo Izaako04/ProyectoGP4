@@ -325,7 +325,7 @@ public class Comprador {
                 i--;
             }
             else if(resp==9){
-                x=0;
+                x+=1;
             }
             else if(resp==2){
                 if(i>=0 && i<listaSel.size()-1)
