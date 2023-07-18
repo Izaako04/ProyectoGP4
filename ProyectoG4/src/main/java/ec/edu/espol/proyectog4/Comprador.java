@@ -4,8 +4,6 @@
  */
 package ec.edu.espol.proyectog4;
 
-import static ec.edu.espol.proyectog4.Vendedor.readFileClaves;
-import static ec.edu.espol.proyectog4.Vendedor.readFileCorreos;
 import static ec.edu.espol.util.Util.getSHA;
 import static ec.edu.espol.util.Util.nextID;
 import static ec.edu.espol.util.Util.toHexString;
@@ -134,12 +132,12 @@ public class Comprador {
                     if (c.equals(correo)) {
                     System.out.println("Correo ya registrado");
                     } else {
-                    Vendedor v = new Vendedor(id_comprador,n,ape,org,password,correo);
+                    Vendedor v = new Vendedor(id_comprador,n,ape,org,correo,password);
                     v.saveArchivo(nfile);
                     }
                 }
             }else{
-                Vendedor v = new Vendedor(id_comprador,n,ape,org,password,correo);
+                Vendedor v = new Vendedor(id_comprador,n,ape,org,correo,password);
                 v.saveArchivo(nfile);
             }                
         }catch (NoSuchAlgorithmException e) {
@@ -176,11 +174,11 @@ public class Comprador {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-        if(tipo=="moto")
+        if(tipo.equals("moto"))
             return listaMotos;
-        if(tipo=="camioneta")
+        if(tipo.equals("camioneta"))
             return listaCamionetas;
-        if(tipo=="auto")
+        if(tipo.equals("auto"))
             return listaAutos;
         else
             return listaTotal;
@@ -199,6 +197,7 @@ public class Comprador {
     
     
     public static void ofertarVehiculo(Scanner sc, String nfile, String fileVendedores){
+        ArrayList<Oferta> ofertascreadas = new ArrayList<>();
         System.out.println("¿Desea ingresar tipo de vehiculo? \n 1.Si \n 2.No :");
         int resp1=sc.nextInt();
         sc.nextLine();
@@ -321,14 +320,16 @@ public class Comprador {
                 System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver anterior vehiculo \n 9.Salir");
                 resp=sc.nextInt();
             }
+
             Oferta off;
             if (resp==1){
                 System.out.println("Ingrese su oferta:");
-                double ofertaIn=sc.nextDouble();
+                double ofertaIn=Double.parseDouble(sc.nextLine());
                 System.out.println("Ingrese su correo: ");
                 String correoIn=sc.nextLine();
                 off=new Oferta(ofertaIn,correoIn,v);
                 Oferta.ofertasVehiculos.add(off);
+                ofertascreadas.add(off);
                 i++;
             }
             else if(resp==3){
@@ -344,13 +345,9 @@ public class Comprador {
                     i--;
                 }
             }
-            
-            
-        }
-            
-                
-            
-            
-            
+            for(Oferta o: ofertascreadas){
+                o.saveArchivoOferta("Ofertas.txt");
+            }
+        }    
     }
 }

@@ -43,7 +43,7 @@ public class Menu {
                            2. Ofertar por Vehiculo
                            3. Regresar""");
         Scanner sc= new Scanner(System.in);
-        int opcion= sc.nextInt();
+        int opcion= Integer.parseInt(sc.nextLine());
         
         if (opcion==1){
             Comprador.nextComprador(sc,"Compradores.txt");

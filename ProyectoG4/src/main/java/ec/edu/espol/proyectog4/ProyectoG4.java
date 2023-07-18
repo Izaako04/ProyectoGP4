@@ -40,7 +40,7 @@ public class ProyectoG4 {
                            2. Métodos de Comprador
                            3. Salir""");
             System.out.println("Ingrese una opcion");
-            opcion=sc.nextInt();         
+            opcion=Integer.parseInt(sc.nextLine());   
         }       
     }   
 }    
