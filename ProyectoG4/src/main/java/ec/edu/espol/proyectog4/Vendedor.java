@@ -333,7 +333,7 @@ public class Vendedor {
             if (resp==0){
                 Util.enviarCorreo(correoI,"Oferta Aceptada","La oferta que ha realizado ha sido aceptada por el vendedor del vehiculo",correo,cv);
                 int pos = Vehiculo.searchPosByPlaca(nfileVeh, placaIn);
-                Util.eliminarInformacion("Vehiculos.txt", pos);
+                Util.eliminarInformacion("Vehiculos.txt", (pos+1));
             }
             else if(resp==1){
                 if(i>=0 && i<vehSel.size()-1)
@@ -344,7 +344,8 @@ public class Vendedor {
             }
             else if(resp==2)
                 i--;
-           
+            else if(resp==9)
+                x+=1;
         }
     }
 }
